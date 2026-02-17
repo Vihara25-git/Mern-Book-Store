@@ -7,14 +7,14 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const SideBar = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   console.log(user)
   return (
-    <Sidebar aria-label="Sidebar with content separator example">
-         <SidebarLogo href="#" img={user?.photoURL} imgAlt="Flowbite logo">
-        {
-          user?.displayName || "Demo User"
-        }
+    <Sidebar aria-label="Sidebar with content separator example" className="h-full w-full border-r border-gray-200 bg-white">
+      <SidebarLogo href="/" img={user?.photo || userImg} imgAlt="Flowbite logo" className="w-16 h-16 rounded-full mb-4">
+        <p className="text-xl font-bold text-gray-800 ml-2">
+          {user?.displayName || "Admin User"}
+        </p>
       </SidebarLogo>
       <SidebarItems>
         <SidebarItemGroup>

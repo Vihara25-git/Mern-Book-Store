@@ -9,6 +9,8 @@ import Shop from "../shop/Shop";
 import About from "../components/About";
 import Blog from "../components/Blog";
 import SingleBook from "../shop/SingleBook";
+import Payment from "../shop/Payment";
+import OrderSuccess from "../shop/OrderSuccess";
 import DashboardLayout from "../dashboard/DashboardLayout";
 import Dashboard from "../dashboard/Dashboard";
 import UploadBook from "../dashboard/UploadBook";
@@ -22,62 +24,71 @@ import Logout from "../components/Logout";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
     children: [
-        {
-            path: '/',
-            element: <Home/>
-        },
-        {
-            path: '/shop',
-            element: <Shop/>
-        },
-        {
-            path: "/about",
-            element: <About/>
-        },
-        {
-            path: "/blog",
-            element: <Blog/>
-        },
-        {
-            path: "/book/:id",
-            element: <SingleBook/>,
-            loader: ({params}) => fetch(`http://localhost:5000/books/${params.id}`)
-        }
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: '/shop',
+        element: <Shop />
+      },
+      {
+        path: "/about",
+        element: <About />
+      },
+      {
+        path: "/blog",
+        element: <Blog />
+      },
+      {
+        path: "/book/:id",
+        element: <SingleBook />,
+        loader: ({ params }) => fetch(`http://localhost:5000/books/${params.id}`)
+      },
+      {
+        path: "/payment/:id",
+        element: <Payment />,
+        loader: ({ params }) => fetch(`http://localhost:5000/books/${params.id}`)
+      },
+      {
+        path: "/order-success",
+        element: <OrderSuccess />
+      }
     ]
   },
   {
     path: "/admin/dashboard",
-    element: <DashboardLayout/>,
+    element: <DashboardLayout />,
     children: [
       {
         path: "/admin/dashboard",
-        element: <PrivateRoute><Dashboard/></PrivateRoute>
+        element: <PrivateRoute><Dashboard /></PrivateRoute>
       },
       {
         path: "/admin/dashboard/upload",
-        element: <UploadBook/>
+        element: <UploadBook />
       },
       {
         path: "/admin/dashboard/manage",
-        element: <ManageBooks/>
+        element: <ManageBooks />
       },
       {
         path: "/admin/dashboard/edit-books/:id",
-        element: <EditBooks/>,
-        loader: ({params}) => fetch(`http://localhost:5000/books/${params.id}`)
+        element: <EditBooks />,
+        loader: ({ params }) => fetch(`http://localhost:5000/books/${params.id}`)
       },
     ]
-  },{
+  }, {
     path: "/sign-up",
-    element: <Signup/>
-  },{
+    element: <Signup />
+  }, {
     path: "login",
-    element: <Login/>
-  },{
+    element: <Login />
+  }, {
     path: "logout",
-    element: <Logout/>
+    element: <Logout />
   }
 ]);
 
